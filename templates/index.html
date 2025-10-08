@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Deep Learning Text-to-Speech</title>
+    <style>
+        body {
+            font-family: "Segoe UI", sans-serif;
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            font-size: 2.2em;
+            margin-bottom: 20px;
+        }
+        form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            display: inline-block;
+        }
+        textarea {
+            width: 350px;
+            height: 100px;
+            border: none;
+            border-radius: 10px;
+            padding: 10px;
+            resize: none;
+            font-size: 16px;
+        }
+        button {
+            margin-top: 15px;
+            padding: 10px 25px;
+            border: none;
+            background: #27ae60;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #2ecc71;
+        }
+        audio {
+            margin-top: 25px;
+            width: 400px;
+        }
+        .message {
+            margin-top: 15px;
+            color: #ffeaa7;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎙️ Deep Learning Text-to-Speech</h1>
+    <form action="/generate" method="POST">
+        <textarea name="text" placeholder="Enter text to convert into speech..."></textarea><br>
+        <button type="submit">Generate Speech</button>
+    </form>
+    {% if message %}
+        <div class="message">{{ message }}</div>
+    {% endif %}
+    {% if audio_file %}
+        <div>
+            <audio controls>
+                <source src="{{ audio_file }}" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+            <br>
+            <a href="/download">
+                <button style="background:#2980b9;">Download Audio</button>
+            </a>
+        </div>
+    {% endif %}
+</body>
+</html>
